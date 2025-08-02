@@ -1,0 +1,12 @@
+[Unit]
+Description=KMonad keyboard config
+
+[Service]
+Restart=always
+RestartSec=3
+ExecStart=/run/current-system/sw/bin/kmonad /home/nixos/thinkpad_T430_iso.kbd
+Nice=-20
+
+[Install]
+DefaultInstance=config
+WantedBy=default.target
