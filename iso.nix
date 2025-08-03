@@ -54,6 +54,7 @@
     "cfi=kcfi"
     "quiet"
     "splash"
+    "copytoram"
   ];
 
   boot.kernelModules = [

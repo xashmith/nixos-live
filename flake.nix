@@ -82,6 +82,7 @@
               pkgs.bubblewrap
               pkgs.i2pd
               pkgs.docker
+              pkgs.podman
               pkgs.nq
               pkgs.firefox
               pkgs.firefox-esr
