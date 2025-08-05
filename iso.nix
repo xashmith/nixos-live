@@ -122,17 +122,12 @@
       torsocks.enable = true;
       client = {
         enable = true;
-        # dns.enable = true;
       };
-      # settings.DNSPort = [{
-      #   addr = "127.0.0.1";
-      #   port = 53;
-      # }];
     };
-    # resolved = {
-    #   enable = true;
-    #   fallbackDns = [""];
-    # };
+    privoxy = {
+      enable = true;
+      enableTor = true;
+    };
     kmonad = {
       enable = true;
       keyboards = {
