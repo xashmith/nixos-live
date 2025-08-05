@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   nix = {
     settings = {
@@ -55,6 +55,9 @@
     "quiet"
     "splash"
     "copytoram"
+    "efi_pstore.pstore_disable=1"
+    "erst_disable"
+    "spec_store_bypass_disable=on"
   ];
 
   boot.kernelModules = [
@@ -89,31 +92,47 @@
       "media"
       "adm"
       "dialout"
+      "docker"
     ];
   };
-
-  # users.groups.uinput.members = ["nixos"];
 
   fonts.packages = [
     pkgs.nerd-fonts.droid-sans-mono
     pkgs.nerd-fonts.dejavu-sans-mono
   ];
 
+  systemd.services.systemd-resolved.enable = lib.mkForce false;
+
   services = {
-    dnscrypt-proxy2.enable = true;
+    dnscrypt-proxy2 = {
+      enable = true;
+      settings = {
+        ipv6_servers = true;
+        require_dnssec = true;
+        require_nolog = true;
+        require_nofilter = true;
+        force_tcp = true;
+        proxy = "socks5h://127.0.0.1:9050";
+      };
+    };
     i2pd.enable = true;
     tor = {
       enable = true;
-      client.dns.enable = true;
-      settings.DNSPort = [{
-        addr = "127.0.0.1";
-        port = 53;
-      }];
+      enableGeoIP = false;
+      torsocks.enable = true;
+      client = {
+        enable = true;
+        # dns.enable = true;
+      };
+      # settings.DNSPort = [{
+      #   addr = "127.0.0.1";
+      #   port = 53;
+      # }];
     };
-    resolved = {
-      enable = true;
-      fallbackDns = [""];
-    };
+    # resolved = {
+    #   enable = true;
+    #   fallbackDns = [""];
+    # };
     kmonad = {
       enable = true;
       keyboards = {
@@ -125,10 +144,24 @@
     };
   };
 
-  networking.firewall.enable = true;
-  networking.hostName = "janes-laptop";
-  networking.networkmanager.enable = true;
-  networking.nameservers = ["127.0.0.1"];
+  virtualisation.docker = {
+    enable =true;
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+
+  };
+
+  networking = {
+    firewall.enable = true;
+    hostName = "janes-phone";
+    networkmanager.enable = true;
+    nameservers = ["127.0.0.1"  "::1"];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = lib.mkForce "none";
+  };
 
   home-manager.users.nixos = import ./home.nix;
 }

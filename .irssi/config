@@ -457,38 +457,7 @@ windows = {
   1 = {
     immortal = "yes";
     name = "(status)";
-    servertag = "devinet";
     level = "ALL";
-  };
-  2 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#soulhack";
-        tag = "devinet";
-      }
-    );
-  };
-  3 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#securityfeeds";
-        tag = "devinet";
-      }
-    );
-  };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#milla_alerts";
-        tag = "devinet";
-      }
-    );
   };
 };
 mainwindows = {

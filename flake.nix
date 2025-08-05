@@ -120,6 +120,17 @@
               pkgs.oniux
               pkgs.libreoffice
               pkgs.rlwrap
+              pkgs.rsync
+              pkgs.autossh
+              pkgs.proxychains-ng
+              pkgs.torsocks
+              pkgs.iotop-c
+              pkgs.dry
+              pkgs.jq
+              pkgs.xq
+              pkgs.yq
+              pkgs.privoxy
+              pkgs.yggdrasil
             ];
           })
           home-manager.nixosModules.home-manager
