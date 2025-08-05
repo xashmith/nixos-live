@@ -131,6 +131,12 @@
               pkgs.yq
               pkgs.privoxy
               pkgs.yggdrasil
+              pkgs.thermald
+              pkgs.powertop
+              pkgs.ntpd-rs
+              pkgs.jitterentropy-rngd
+              pkgs.k9s
+              pkgs.kubectl
             ];
           })
           home-manager.nixosModules.home-manager

@@ -128,6 +128,18 @@
       enable = true;
       enableTor = true;
     };
+    haveged = {
+      enable = true;
+    };
+    thermald = {
+      enable = true;
+    };
+    ntpd-rs = {
+      enable = true;
+    };
+    jitterentropy-rngd = {
+      enable = true;
+    };
     kmonad = {
       enable = true;
       keyboards = {
