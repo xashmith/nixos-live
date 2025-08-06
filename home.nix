@@ -5,6 +5,18 @@
   home.stateVersion = "25.11";
   programs.home-manager.enable  = true;
 
+  dconf = {
+    enable =true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        gtk-theme = "Adwaita";
+        icon-theme = "Adwaita";
+      };
+    };
+
+  };
+
   home.file.".vimrc" = {
     source = ./vimrc;
   };
