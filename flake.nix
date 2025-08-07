@@ -137,6 +137,30 @@
               pkgs.jitterentropy-rngd
               pkgs.k9s
               pkgs.kubectl
+              pkgs.gparted
+              pkgs.gnumake
+              pkgs.neovim
+              pkgs.nvimpager
+              pkgs.autoconf
+              pkgs.automake
+              pkgs.libtool
+              pkgs.pkgconf
+              pkgs.parallel
+              pkgs.rustup
+              pkgs.opam
+              pkgs.binwalk
+              pkgs.flashprog
+              pkgs.fwupd
+              pkgs.macchanger
+              pkgs.lynis
+              pkgs.aide
+              pkgs.usbutils
+              pkgs.nvme-cli
+              pkgs.pciutils
+              pkgs.shattered-pixel-dungeon
+              pkgs.cataclysm-dda
+              pkgs.crawl
+              pkgs.nethack
             ];
           })
           home-manager.nixosModules.home-manager

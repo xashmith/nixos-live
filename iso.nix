@@ -149,6 +149,7 @@
         };
       };
     };
+    displayManager.gdm.enable = lib.mkForce false;
   };
 
   virtualisation.docker = {
