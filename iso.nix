@@ -149,7 +149,7 @@
         };
       };
     };
-    displayManager.gdm.enable = lib.mkForce false;
+    # displayManager.gdm.enable = lib.mkForce false;
   };
 
   virtualisation.docker = {
@@ -159,8 +159,9 @@
   virtualisation.podman = {
     enable = true;
     defaultNetwork.settings.dns_enabled = true;
-
   };
+
+  virtualisation.waydroid.enable = true;
 
   networking = {
     firewall.enable = true;

@@ -161,6 +161,8 @@
               pkgs.cataclysm-dda
               pkgs.crawl
               pkgs.nethack
+              pkgs.endless-sky
+              pkgs.wl-clipboard
             ];
           })
           home-manager.nixosModules.home-manager
