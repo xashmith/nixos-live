@@ -131,6 +131,9 @@
     haveged = {
       enable = true;
     };
+    syslogd = {
+      enable = true;
+    };
     thermald = {
       enable = true;
     };

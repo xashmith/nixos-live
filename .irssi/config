@@ -27,6 +27,7 @@ servers = (
     port = "6697";
     use_tls = "yes";
     tls_verify = "yes";
+    tls_cert = "~/.irssi/certs/nick.pem";
   },
   {
     address = "irc.gamesurge.net";
@@ -53,6 +54,7 @@ servers = (
     port = "6697";
     use_tls = "yes";
     tls_verify = "yes";
+    tls_cert = "~/.irssi/certs/nick.pem";
   },
   { 
     address = "irc.quakenet.org";
@@ -106,6 +108,7 @@ chatnets = {
     max_kicks = "1";
     max_msgs = "4";
     max_whois = "1";
+    nick = "ephemeralnixie";
   };
   GameSurge = {
     type = "IRC";
@@ -131,7 +134,7 @@ chatnets = {
     max_msgs = "1";
     max_whois = "1";
   };
-  OFTC = { type = "IRC"; max_kicks = "1"; max_msgs = "1"; max_whois = "1"; };
+  OFTC = { type = "IRC"; max_kicks = "1"; max_msgs = "1"; max_whois = "1"; nick = "ephemeralnixie"; };
   QuakeNet = {
     type = "IRC";
     max_kicks = "1";
@@ -458,13 +461,5 @@ windows = {
     immortal = "yes";
     name = "(status)";
     level = "ALL";
-  };
-};
-mainwindows = {
-  2 = { 
-    first_line = "0";
-    lines = "51";
-    first_column = "0";
-    columns = "212";
   };
 };

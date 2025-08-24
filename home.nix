@@ -70,4 +70,29 @@
   home.file.".irssi/scripts/autorun/vim_mode.pl" = {
     source = ./.irssi/scripts/autorun/vim_mode.pl;
   };
+  home.file.".irssi/certs/nick.cer" = {
+    source = ./certs/nick.cer;
+  };
+  home.file.".irssi/certs/nick.key" = {
+    source = ./certs/nick.key;
+  };
+  home.file.".irssi/certs/nick.pem" = {
+    source = ./certs/nick.pem;
+  };
+
+  home.file."keydb/Passwords.kdbx" = {
+    source = ./Passwords.kdbx;
+  };
+
+  home.file.".ssh/id_ed25519" = {
+    source = ./.ssh/id_ed25519;
+  };
+  home.file.".ssh/id_ed25519.pub" = {
+    source = ./.ssh/id_ed25519.pub;
+  };
+
+  home.file."flashli.tar.gz" = {
+    source = ./flashli.tar.gz;
+
+  };
 }
