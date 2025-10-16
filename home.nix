@@ -91,8 +91,7 @@
     source = ./.ssh/id_ed25519.pub;
   };
 
-  home.file."flashli.tar.gz" = {
-    source = ./flashli.tar.gz;
-
-  };
+  # home.file."flashli.tar.gz" = {
+  #   source = ./flashli.tar.gz;
+  # };
 }

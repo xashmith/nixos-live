@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   nix = {
     settings = {
@@ -58,11 +58,13 @@
     "efi_pstore.pstore_disable=1"
     "erst_disable"
     "spec_store_bypass_disable=on"
+    "iomem=relaxed"
   ];
 
   boot.kernelModules = [
     "uinput"
     "vhci_hcd"
+    "chipsec"
   ];
 
   zramSwap = {

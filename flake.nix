@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     packages.x86_64-linux.default = self.nixosConfigurations.exampleIso.config.system.build.isoImage;
     nixosConfigurations = {
       exampleIso = nixpkgs.lib.nixosSystem {
@@ -18,6 +18,12 @@
             imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix") ];
             environment.systemPackages = [
               pkgs.tmux
+              pkgs.tmuxPlugins.yank
+              pkgs.tmuxPlugins.extrakto
+              pkgs.tmuxPlugins.fuzzback
+              pkgs.tmuxPlugins.resurrect
+              pkgs.tmuxPlugins.continuum
+              pkgs.tmuxPlugins.urlview
               pkgs.git
               pkgs.vim
               pkgs.vimPlugins.YouCompleteMe
@@ -51,6 +57,7 @@
               pkgs.wireshark
               pkgs.tshark
               pkgs.dig
+              pkgs.doggo
               pkgs.libvirt
               pkgs.qemu_kvm
               pkgs.flatpak
@@ -150,6 +157,7 @@
               pkgs.opam
               pkgs.binwalk
               pkgs.flashprog
+              pkgs.flashrom
               pkgs.fwupd
               pkgs.macchanger
               pkgs.lynis
@@ -163,6 +171,9 @@
               pkgs.nethack
               pkgs.endless-sky
               pkgs.wl-clipboard
+              pkgs.strace
+              pkgs.nfs-utils
+              pkgs.chipsec
             ];
           })
           home-manager.nixosModules.home-manager
