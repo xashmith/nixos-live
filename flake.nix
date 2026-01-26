@@ -1,5 +1,5 @@
 {
-  description = "Minimal NixOS installation media";
+  description = "terminaldweller's live NixOS";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -123,6 +123,7 @@
               pkgs.usbguard
               pkgs.wireguard-tools
               pkgs.openvpn
+              pkgs.mullvad-vpn
               pkgs.arti
               pkgs.oniux
               pkgs.libreoffice
@@ -174,6 +175,13 @@
               pkgs.strace
               pkgs.nfs-utils
               pkgs.chipsec
+              pkgs.devbox
+              pkgs.clamav
+              pkgs.exiftool
+              pkgs.magika
+              pkgs.util-linux
+              pkgs.tlp
+              pkgs.fd
             ];
           })
           home-manager.nixosModules.home-manager

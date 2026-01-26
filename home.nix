@@ -91,7 +91,15 @@
     source = ./.ssh/id_ed25519.pub;
   };
 
+  home.file.".config/foot/foot.ini" = {
+    source = ./foot.ini;
+  };
+
   # home.file."flashli.tar.gz" = {
   #   source = ./flashli.tar.gz;
   # };
+
+  home.file."be-bru-wg-102.conf" = {
+    source = ./be-bru-wg-102.conf;
+  };
 }

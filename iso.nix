@@ -65,6 +65,8 @@
     "uinput"
     "vhci_hcd"
     "chipsec"
+    "zfs"
+    "wireguard"
   ];
 
   zramSwap = {
@@ -95,6 +97,8 @@
       "adm"
       "dialout"
       "docker"
+      "wireshark"
+      "console"
     ];
   };
 
@@ -175,6 +179,7 @@
     nameservers = ["127.0.0.1"  "::1"];
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = lib.mkForce "none";
+    wg-quick.interfaces.wg0.configFile = "./be-bru-wg-102.conf";
   };
 
   home-manager.users.nixos = import ./home.nix;
