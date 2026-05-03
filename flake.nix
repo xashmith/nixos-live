@@ -4,7 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -19,11 +19,9 @@
             environment.systemPackages = [
               pkgs.tmux
               pkgs.tmuxPlugins.yank
-              pkgs.tmuxPlugins.extrakto
-              pkgs.tmuxPlugins.fuzzback
-              pkgs.tmuxPlugins.resurrect
-              pkgs.tmuxPlugins.continuum
-              pkgs.tmuxPlugins.urlview
+              pkgs.tmuxPlugins.fzf-tmux-url
+              pkgs.tmuxPlugins.tmux-fzf
+              pkgs.tmuxPlugins.copycat
               pkgs.git
               pkgs.vim
               pkgs.vimPlugins.YouCompleteMe
@@ -71,7 +69,6 @@
               pkgs.zsh-powerlevel10k
               pkgs.zsh-syntax-highlighting
               pkgs.zsh-autosuggestions
-              pkgs.zsh-powerlevel10k
               pkgs.dash
               pkgs.ksh
               pkgs.eza
@@ -183,6 +180,9 @@
               pkgs.gophertube
               pkgs.ani-cli
               pkgs.xonsh
+              pkgs.lm_sensors
+              pkgs.perlPackages.LWP
+              pkgs.perlPackages.DateTime
             ];
           })
           home-manager.nixosModules.home-manager
