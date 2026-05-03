@@ -35,7 +35,6 @@
               pkgs.lf
               pkgs.w3m
               pkgs.lynx
-              pkgs.elinks
               pkgs.amfora
               pkgs.lagrange-tui
               pkgs.lagrange
@@ -66,7 +65,6 @@
               pkgs.python3
               pkgs.pipx
               pkgs.poetry
-              pkgs.zfs
               pkgs.zoxide
               pkgs.grc
               pkgs.zsh
@@ -182,6 +180,9 @@
               pkgs.util-linux
               pkgs.tlp
               pkgs.fd
+              pkgs.gophertube
+              pkgs.ani-cli
+              pkgs.xonsh
             ];
           })
           home-manager.nixosModules.home-manager

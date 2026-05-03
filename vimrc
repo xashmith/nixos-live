@@ -1,8 +1,10 @@
 let mapleader = " "
 syntax on
-colo lunaperche
+colo wildcharm
 set background=dark
 set nocompatible
+set nomodeline
+set modelines=0
 set number
 set relativenumber
 set magic
@@ -11,7 +13,6 @@ set list
 set title
 set showmatch
 set hidden
-set expandtab
 set smarttab
 set autoindent
 set wildignorecase
@@ -24,6 +25,9 @@ set novisualbell
 set dictionary+=/usr/share/dict/words
 set backspace=indent,eol,start
 set pastetoggle=<F11>
+set tabstop=2
+set shiftwidth=2
+set expandtab
 nnoremap <F7> :Vexplore<CR>
 nnoremap <leader>nn :bn<CR>
 nnoremap <leader>pp :bp<CR>
@@ -86,7 +90,29 @@ hi def InterestingWord7 ctermfg=16 ctermbg=99 guifg=#000000 guibg=#875fff
 hi def InterestingWord8 ctermfg=16 ctermbg=35 guifg=#000000 guibg=#00af5f
 hi def InterestingWord9 ctermfg=16 ctermbg=57 guifg=#000000 guibg=#5f00ff
 hi def InterestingWord0 ctermfg=16 ctermbg=39 guifg=#000000 guibg=#00afff
-"
+
+"Steve Losh's highlight function
+function HighInterestingWord(n)
+  normal! mz
+  normal! "zyiw
+  let mid = 88888 + a:n
+  silent! call matchdelete(mid)
+  let pat = '\V\<' . escape(@z, '\') . '\>'
+  call matchadd("InterestingWord".a:n, pat, 1, mid)
+  normal! `z
+endfunction
+
+"multiple highlights
+nnoremap <silent> <leader>1 :call HighInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HighInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HighInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HighInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HighInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HighInterestingWord(6)<cr>
+nnoremap <silent> <leader>7 :call HighInterestingWord(7)<cr>
+nnoremap <silent> <leader>8 :call HighInterestingWord(8)<cr>
+nnoremap <silent> <leader>9 :call HighInterestingWord(9)<cr>
+nnoremap <silent> <leader>0 :call HighInterestingWord(0)<cr>
 "typos
 iab adn and
 iab teh the
@@ -107,7 +133,7 @@ let g:netrw_sort_by = 'date'
 let g:netrw_sort_direction = 'reverse'
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 1
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 15
 let g:netrw_fastbrowse = 1
 let g:netrw_sort_by = 'name'
@@ -142,6 +168,9 @@ nmap _Y :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
 vmap _Y :w! ~/.vi_tmp<CR>
 nmap _P :r ~/.vi_tmp<CR>
 
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
 if has("gui")
   " set guifont=DejaVu_Sans_Mono_for_Powerline:h10
   set guioptions-=m
@@ -150,3 +179,67 @@ if has("gui")
   set guioptions-=r
 endif
 set secure
+
+nmap ,s :call SwitchSourceHeader()<CR>
+
+" standard cscope settings switches from ctags to cscope.
+if has("cscope")
+	set csprg=/usr/bin/cscope
+	set csto=0
+	set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+ "  set csqf
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+			cs add cscope.out
+	" else add database pointed to by environment
+	elseif $CSCOPE_DB != ""
+			cs add $CSCOPE_DB
+	endif
+	set csverb
+endif
+
+"   " The following maps all invoke one of the following cscope search types:
+"   's'   symbol: find all references to the token under cursor
+"   'g'   global: find global definition(s) of the token under cursor
+"   'c'   calls:  find all calls to the function name under cursor
+"   't'   text:   find all instances of the text under cursor
+"   'e'   egrep:  egrep search for the word under cursor
+"   'f'   file:   open the filename under cursor
+"   'i'   includes: find files that include the filename under cursor
+"   'd'   called: find functions that function under cursor calls
+nnoremap <silent> <C-@>s :lcs find s <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+nnoremap <silent> <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent> <C-@>d :lcs find d <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr>
+nnoremap <silent> <C-@>c :lcs find c <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+nnoremap <silent> <C-@>t :lcs find t <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+nnoremap <silent> <C-@>e :lcs find e <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+nnoremap <silent> <C-@>f :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <C-@>i :lcs find i <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+nnoremap <silent> <C-@>a :lcs find a <C-R>=expand("<cword>")<cr><cr><bar>:lopen<cr><bar>:wincmd p<cr>
+
+"below is for finding where function decl is  used
+map g<C-]> :cs find c <C-R>=expand("<cword>")<CR><CR>
+"below is for finding where a definition is used
+map g<C-\> :cs find s <C-R>=expand("<cword>")<CR><CR>
+"ctrl-] and g] now both takes us to the definition.
+
+if executable('rg')
+		set grepprg=rg\ --vimgrep\ --no-hidden\ --no-heading\ --smart-case
+		set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+augroup gzip
+ autocmd!
+ autocmd BufReadPre,FileReadPre *.gz set bin
+ autocmd BufReadPost,FileReadPost   *.gz '[,']!gunzip
+ autocmd BufReadPost,FileReadPost   *.gz set nobin
+ autocmd BufReadPost,FileReadPost   *.gz execute ":doautocmd BufReadPost " . expand("%:r")
+ autocmd BufWritePost,FileWritePost *.gz !mv <afile> <afile>:r
+ autocmd BufWritePost,FileWritePost *.gz !gzip <afile>:r
+ autocmd FileAppendPre      *.gz !gunzip <afile>
+ autocmd FileAppendPre      *.gz !mv <afile>:r <afile>
+ autocmd FileAppendPost     *.gz !mv <afile> <afile>:r
+ autocmd FileAppendPost     *.gz !gzip <afile>:r
+augroup END
